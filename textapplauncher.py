@@ -3,24 +3,29 @@ import os
 import re
 name=""
 pexec=""
-for filename in os.listdir("/usr/share/applications"):
-	appname=open('/usr/share/applications/'+filename) 
-	for line in appname:
-		if "Name=" in line:
-			name=line.rstrip().replace('Name=','')
-			regex = re.compile('[^a-zA-Z]')
-			nospacename=regex.sub('', name)
-		if "Exec=" in line:
-				pexec=line.rstrip().replace('Exec=','')
-	# Create function
-	with open("checkinput.py", "a") as myfile:
-		myfile.write('	'+nospacename+'="'+name+'"\n')
-		myfile.write("	if userinput in "+nospacename+":\n")
-		myfile.write("		print('Program name: "+name+"')\n")
-		myfile.write("		print('Exec command: "+pexec+"')\n")
-		myfile.write("")
-		myfile.write("		print(\n) \n")
-	print(name)
+def addToFunction(location):
+	for filename in os.listdir(location):
+		appname=open(location+filename) 
+		for line in appname:
+			if "Name=" in line:
+				name=line.rstrip().replace('Name=','')
+				regex = re.compile('[^a-zA-Z]')
+				nospacename=regex.sub('', name)
+			if "Exec=" in line:
+					pexec=line.rstrip().replace('Exec=','')
+		# Create function
+		with open("checkinput.py", "a") as myfile:
+			myfile.write('	'+nospacename+'="'+name+'"\n')
+			myfile.write("	if userinput in "+nospacename+":\n")
+			myfile.write("		print('Program name: "+name+"')\n")
+			myfile.write("		print('Exec command: "+pexec+"')\n")
+			myfile.write("")
+			myfile.write("		print(\n) \n")
+		print(name)
+
+home = os.path.expanduser("~")
+addToFunction("/usr/share/applications/")
+addToFunction(home+"/.local/share/applications/")
 
 # Import function
 from checkinput import checkinput
