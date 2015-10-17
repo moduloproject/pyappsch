@@ -17,10 +17,12 @@ def addToFunction(location):
 		with open("checkinput.py", "a") as myfile:
 			myfile.write('	'+nospacename+'="'+name+'"\n')
 			myfile.write("	if userinput in "+nospacename+":\n")
+			myfile.write("		print(i)\n")
 			myfile.write("		print('Program name: "+name+"')\n")
 			myfile.write("		print('Exec command: "+pexec+"')\n")
-			myfile.write("")
-			myfile.write("		print(\n) \n")
+			myfile.write("		i=i+1\n")
+			myfile.write(r"		print('\n')")
+			myfile.write("\n")
 		print(name)
 
 home = os.path.expanduser("~")
@@ -43,7 +45,6 @@ checkinput(userinput)
 # Clear function
 open('checkinput.py', 'w').close()
 with open("checkinput.py", "a") as myfile:
-	myfile.write("#!/usr/bin/python3")
-	myfile.write("\n")
-	myfile.write("def checkinput(userinput):")
-	myfile.write("\n")
+	myfile.write("#!/usr/bin/python3\n")
+	myfile.write("def checkinput(userinput):\n")
+	myfile.write("	i=1\n")
