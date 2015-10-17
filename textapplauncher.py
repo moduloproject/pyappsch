@@ -40,9 +40,6 @@ print("These are some of the programs that you can use:\n")
 # Call Function
 checkinput(userinput)
 
-
-
-
 # Clear function
 open('checkinput.py', 'w').close()
 with open("checkinput.py", "a") as myfile:
