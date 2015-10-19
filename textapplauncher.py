@@ -92,6 +92,7 @@ open('checknumbergen.py', 'w').close()
 
 with open("confirmnumber.py", "a") as myfile:
 	myfile.write("#!/usr/bin/python3\n")
+	myfile.write("from subprocess import call\n")
 	myfile.write("def confirmNumber(userNumber):\n")
 
 numbercount=1
@@ -101,7 +102,7 @@ with open("checkinput.py", "r") as checkinp:
 		line=line
 		with open("confirmnumber.py", "a") as checknum:
 			checknum.write('	if userNumber=="'+str(numbercount)+'":\n')
-			checknum.write('		print("'+line+'")\n')
+			checknum.write('		return_code = call("'+line+'", shell=True)\n')
 		numbercount=numbercount+1
 
 from confirmnumber import confirmNumber
