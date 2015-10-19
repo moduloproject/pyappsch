@@ -72,13 +72,12 @@ generatechecknumbergen("/usr/share/applications/")
 generatechecknumbergen(home+"/.local/share/applications/")
 from checknumbergen import checknumbergen
 
-
-
 # Change checkinput.py to be output of checkinput(userinput)
+### THIS IS THE PROBLEM!!!!
 sys.stdout = open('checkinput.py', 'w')
 checknumbergen(userinput)
 sys.stdout.close()
-
+sys.stdout = open("/dev/stdout", "w")
 
 # Removes blank lines
 clean_lines = []
@@ -91,38 +90,27 @@ with open("checkinput.py", "w") as f:
 # Closes checknumbergen.py for later use 
 open('checknumbergen.py', 'w').close()
 
+with open("confirmnumber.py", "a") as myfile:
+	myfile.write("#!/usr/bin/python3\n")
+	myfile.write("def confirmNumber(userNumber):\n")
 
 numbercount=1
 with open("checkinput.py", "r") as checkinp:
 	checkinp=checkinp.read().splitlines() 
 	for line in checkinp:
 		line=line
-		with open("checknumbergen.py", "a") as checknum:
-			checknum.write('if userNumber='+str(numbercount)+':\n')
-			checknum.write('	execline="'+line+'"\n')
-		open("checknumbergen.py", "a").close()
+		with open("confirmnumber.py", "a") as checknum:
+			checknum.write('	if userNumber=="'+str(numbercount)+'":\n')
+			checknum.write('		print("'+line+'")\n')
 		numbercount=numbercount+1
 
-
-#input("Go check your file Corbin")
-
-
-
-
-# Make changes to checkinput.py to be similar to 
-'''
-from checkinput import checknumber
-
-userNumber=input("Pick a number to launch the program: ")
-
-if userNumber==2:
-		# Proper launching of bash command of pexec
-'''
-
-
+from confirmnumber import confirmNumber
+userNumber=str(input("Pick a number to launch the program: "))
+confirmNumber(userNumber)
 
 # Clear file to default
-open('checknumbergen.py', 'w').close()
+os.remove("checknumbergen.py") 
+os.remove("confirmnumber.py")
 open('checkinput.py', 'w').close()
 with open("checkinput.py", "a") as myfile:
 	myfile.write("#!/usr/bin/python3\n")
