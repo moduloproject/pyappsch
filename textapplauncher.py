@@ -91,7 +91,7 @@ with open("checkinput.py", "w") as f:
 open('checknumbergen.py', 'w').close()
 
 with open("confirmnumber.py", "a") as myfile:
-	myfile.write("#!/usr/bin/python3\n")
+	myfile.write("#!/usr/bin/env python3\n")
 	myfile.write("from subprocess import call\n")
 	myfile.write("def confirmNumber(userNumber):\n")
 
