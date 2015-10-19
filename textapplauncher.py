@@ -114,6 +114,6 @@ os.remove("checknumbergen.py")
 os.remove("confirmnumber.py")
 open('checkinput.py', 'w').close()
 with open("checkinput.py", "a") as myfile:
-	myfile.write("#!/usr/bin/python3\n")
+	myfile.write("#!/usr/bin/env python3\n")
 	myfile.write("def checkinput(userinput):\n")
 	myfile.write("	i=1\n")
