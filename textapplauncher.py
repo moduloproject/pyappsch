@@ -83,13 +83,31 @@ sys.stdout.close()
 # Removes blank lines
 clean_lines = []
 with open("checkinput.py", "r") as f:
-    lines = f.readlines()
-    clean_lines = [l.strip() for l in lines if l.strip()]
+	lines = f.readlines()
+	clean_lines = [l.strip() for l in lines if l.strip()]
 with open("checkinput.py", "w") as f:
-    f.writelines('\n'.join(clean_lines))
+	f.writelines('\n'.join(clean_lines))
+
+# Closes checknumbergen.py for later use 
+open('checknumbergen.py', 'w').close()
 
 
-#input("Go check your file corbin")
+numbercount=1
+with open("checkinput.py", "r") as checkinp:
+	checkinp=checkinp.read().splitlines() 
+	for line in checkinp:
+		line=line
+		with open("checknumbergen.py", "a") as checknum:
+			checknum.write('if userNumber='+str(numbercount)+':\n')
+			checknum.write('	execline="'+line+'"\n')
+		open("checknumbergen.py", "a").close()
+		numbercount=numbercount+1
+
+
+#input("Go check your file Corbin")
+
+
+
 
 # Make changes to checkinput.py to be similar to 
 '''
