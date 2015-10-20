@@ -12,11 +12,11 @@ def addToCheckInput(location):
         appname = open(location+filename) 
         for line in appname:
             if "Name=" in line:
-                name = line.rstrip().replace('Name=','')
+                name = line.rstrip().replace('Name=', '')
                 regex = re.compile('[^a-zA-Z]')
                 nospacename = regex.sub('', name)
             if "Exec=" in line:
-                    pexec = line.rstrip().replace('Exec=','')
+                    pexec = line.rstrip().replace('Exec=', '')
         # Create function
         with open("checkinput.py", "a") as myfile:
             myfile.write('    '+nospacename+' = "'+name+'"\n')
@@ -35,11 +35,11 @@ def generatechecknumbergen(location):
         appname = open(location+filename) 
         for line in appname:
             if "Name=" in line:
-                name = line.rstrip().replace('Name=','')
+                name = line.rstrip().replace('Name=', '')
                 regex = re.compile('[^a-zA-Z]')
                 nospacename = regex.sub('', name)
             if "Exec=" in line:
-                    pexec = line.rstrip().replace('Exec=','')
+                    pexec = line.rstrip().replace('Exec=', '')
         # Create function
         with open("checknumbergen.py", "a") as myfile:
             myfile.write('    '+nospacename+' = "'+name+'"\n')
