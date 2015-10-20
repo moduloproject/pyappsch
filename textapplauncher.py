@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Set up
 from os import listdir, path, remove
-import re
+from re import compile as recomp
 import sys
 from subprocess import call
 name = ""
@@ -15,7 +15,7 @@ def addToCheckInput(location):
         for line in appname:
             if "Name=" in line:
                 name = line.rstrip().replace('Name=', '')
-                regex = re.compile('[^a-zA-Z]')
+                regex = recomp('[^a-zA-Z]')
                 nospacename = regex.sub('', name)
             if "Exec=" in line:
                     pexec = line.rstrip().replace('Exec=', '')
@@ -39,7 +39,7 @@ def generatechecknumbergen(location):
         for line in appname:
             if "Name=" in line:
                 name = line.rstrip().replace('Name=', '')
-                regex = re.compile('[^a-zA-Z]')
+                regex = recomp('[^a-zA-Z]')
                 nospacename = regex.sub('', name)
             if "Exec=" in line:
                     pexec = line.rstrip().replace('Exec=', '')
