@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Set up
-import os
+from os import listdir, path, remove
 import re
 import sys
 from subprocess import call
@@ -10,7 +10,7 @@ pexec = ""
 
 # Add to CheckInput
 def addToCheckInput(location):
-    for filename in os.listdir(location):
+    for filename in listdir(location):
         appname = open(location+filename) 
         for line in appname:
             if "Name=" in line:
@@ -34,7 +34,7 @@ def addToCheckInput(location):
 
 # This allows the second time of checkinput.py to be normal
 def generatechecknumbergen(location):
-    for filename in os.listdir(location):
+    for filename in listdir(location):
         appname = open(location+filename) 
         for line in appname:
             if "Name=" in line:
@@ -51,7 +51,7 @@ def generatechecknumbergen(location):
             myfile.write(r"        print('\n')")
             myfile.write("\n")
 
-home = os.path.expanduser("~")
+home = path.expanduser("~")
 addToCheckInput("/usr/share/applications/")
 addToCheckInput(home+"/.local/share/applications/")
 
@@ -112,8 +112,8 @@ userNumber = str(input("Pick a number to launch the program: "))
 confirmNumber(userNumber)
 
 # Clear file to default
-os.remove("checknumbergen.py") 
-os.remove("confirmnumber.py")
+remove("checknumbergen.py") 
+remove("confirmnumber.py")
 open('checkinput.py', 'w').close()
 with open("checkinput.py", "a") as myfile:
     myfile.write("#!/usr/bin/env python3\n")
