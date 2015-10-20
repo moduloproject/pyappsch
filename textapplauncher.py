@@ -3,8 +3,10 @@
 import os
 import re
 import sys
+from subprocess import call
 name = ""
 pexec = ""
+
 
 # Add to CheckInput
 def addToCheckInput(location):
@@ -28,6 +30,7 @@ def addToCheckInput(location):
             myfile.write(r"        print('\n')")
             myfile.write("\n")
         print(name)
+
 
 # This allows the second time of checkinput.py to be normal
 def generatechecknumbergen(location):
@@ -58,7 +61,7 @@ from checkinput import checkinput
 userinput = input("These are the programs you can launch. Pick one: ")
 
 # Clears the screen, making the visibility of the new results much clearer
-os.system('clear')
+call(["clear"])
 
 print("These are some of the programs that you can use:\n")
 
